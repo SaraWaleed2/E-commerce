@@ -29,7 +29,6 @@ const BtmHeader = () => {
             <MenuItem value={cate.name}>{cate.name}</MenuItem>
         )
     })
-    console.log(categorySelection)
 
     const navLinks = [
         { name: "Home", link: "/" },
@@ -78,11 +77,11 @@ const BtmHeader = () => {
                     </div>
                     <div className="nav-list">
                         <nav>
-                            <ul style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: "1.5rem", color: "white"}}>
+                            <ul style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: "1.5rem", color: "white" }}>
                                 {
                                     navLinks.map((link) => {
                                         return (
-                                            <Link key={link.name} style={{color: "white"}} to={link.link}><li>{link.name}</li></Link>
+                                            <Link key={link.name} style={{ color: "white" }} to={link.link}><li>{link.name}</li></Link>
                                         )
                                     })
                                 }

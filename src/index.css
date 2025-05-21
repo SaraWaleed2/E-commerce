@@ -9,7 +9,7 @@
 :root {
   --primary-color: #20486e;
   --secondary-color: #ef8120;
-  --color-heading: #253237;
+  --color-heading: #253237cc;
 }
 
 body {
@@ -29,10 +29,6 @@ h5,
 h6 {
   color: var(--color-heading);
   font-family: "DM Sans", sans-serif;
-}
-
-span {
-  color: var(--secondary-color);
 }
 
 input,
