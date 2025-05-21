@@ -48,7 +48,7 @@ function ProductDetailes() {
 
     return (
         <Container maxWidth="lg">
-            <Grid container spacing={1} alignItems="center" sx={{mb:10}}>
+            <Grid container spacing={1} alignItems="center" sx={{ mb: 10 }}>
 
                 <Grid size={{ md: 6 }} style={{ textAlign: "center" }}>
                     <Box>
@@ -123,7 +123,7 @@ function ProductDetailes() {
             {loading ?
                 (<h2>Loading.............</h2>) : (
 
-                    <HeadlineContext.Provider key={productDetailes.id} value={{ title: productDetailes.category.replace('-', " ")  }}>
+                    <HeadlineContext.Provider key={productDetailes.id} value={{ title: productDetailes.category.replace('-', " "), content: `Explore similar products in ${productDetailes.category} category` }}>
                         <ProductsSlider products={relatedProducts} />
                     </HeadlineContext.Provider>
 

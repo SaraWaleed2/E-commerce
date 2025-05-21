@@ -4,7 +4,6 @@ import BtmHeader from './Components/Layout/Header/BtmHeader'
 import TopHeader from './Components/Layout/Header/TopHeader'
 import HomePage from './Pages/HomePage'
 import ProductDetailes from './Components/Home/SlideProducts/ProductDetailes'
-
 function App() {
 
   return (
@@ -15,6 +14,7 @@ function App() {
       </header>
 
       <Routes>
+      
         <Route element={<HomePage />} path='/' />
         <Route element={<ProductDetailes />} path='/products/:id' />
       </Routes>
