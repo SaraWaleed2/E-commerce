@@ -15,6 +15,7 @@
 body {
   background: white;
   font-family: "Inter", sans-serif;
+  padding-top: 150px;
 }
 
 img {
@@ -45,4 +46,14 @@ ul {
 
 a {
   text-decoration: none;
+}
+
+header{
+  position: fixed;
+  z-index: 1000;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  background-color: white;
 }

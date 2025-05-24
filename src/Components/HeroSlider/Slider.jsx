@@ -8,12 +8,12 @@ import './slider.css'
 
 // import required modules
 import { Autoplay, Pagination } from 'swiper/modules';
-import { Button, Container } from '@mui/material';
+import { Box, Button, Container } from '@mui/material';
 import { Link } from 'react-router-dom';
 
 export default function Slider() {
     return (
-        <div className="hero">
+        <Box className="hero">
             <Container maxWidth="lg">
                 <Swiper
                     spaceBetween={30}
@@ -67,6 +67,6 @@ export default function Slider() {
                     </SwiperSlide>
                 </Swiper>
             </Container>
-        </div>
+        </Box>
     );
 }

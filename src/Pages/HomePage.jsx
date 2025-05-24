@@ -1,8 +1,10 @@
-import Slider from "../Components/Home/Slider/Slider.jsx";
-import ProductsSlider from "../Components/Home/SlideProducts/ProductsSlider.jsx";
+import Slider from "../Components/HeroSlider/Slider.jsx";
+import ProductsSlider from "../Components/SlideProducts/ProductsSlider.jsx";
 import { HeadlineContext } from "../Context/HeadlineContext.js";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import SliderProductLoading from "../Components/SlideProducts/SliderProductLoading.jsx";
+
 
 function HomePage() {
     const [products, setProducts] = useState({});
@@ -15,7 +17,6 @@ function HomePage() {
         { category: 'tablets', categoryDesc: "Versatile tablets for entertainment, productivity, and seamless connectivity on the go" },
         { category: 'sunglasses', categoryDesc: "Stylish and protective sunglasses to elevate your look while shielding your eyes" },
     ];
-
 
     useEffect(() => {
         Promise.all(
@@ -39,8 +40,9 @@ function HomePage() {
 
             {
                 isLoading ? (
-                    <h2>Loading</h2>
-                ) :
+                    productsCategories.map((category) => (
+                        <SliderProductLoading key={category.category} />
+                    ))) :
                     (
                         productsCategories.map((category) => (
                             <HeadlineContext.Provider

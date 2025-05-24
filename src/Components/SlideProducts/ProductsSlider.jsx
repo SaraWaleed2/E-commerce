@@ -1,5 +1,5 @@
 import { Container } from "@mui/material"
-import Headline from "../../Headline"
+import Headline from "../Headline"
 import Product from "./Product"
 
 // Import Swiper React components

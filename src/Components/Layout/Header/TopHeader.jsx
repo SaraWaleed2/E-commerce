@@ -6,8 +6,12 @@ import Avatar from '@mui/material/Avatar';
 import Badge from '@mui/material/Badge';
 import './Header.css'
 import { Link } from 'react-router-dom';
+import { cartContext } from '../../../Context/cartContext';
+import { useContext } from 'react';
 
 function TopHeader() {
+    const { cartItems } = useContext(cartContext)
+
     return (
 
         <Container>
@@ -69,11 +73,11 @@ function TopHeader() {
 
                 <div className="icons">
                     <Stack spacing={2} direction="row">
-                        <Badge badgeContent={3} color="primary">
+                        <Badge badgeContent={3}  showZero color="primary">
                             <Link to='/'><FavoriteBorderIcon style={{ fontSize: "28px", color: "#20486e" }} /></Link>
                         </Badge>
-                        <Badge badgeContent={5} color="primary">
-                            <Link to='/'><ShoppingBagIcon style={{ fontSize: "28px", color: "#20486e" }} /></Link>
+                        <Badge badgeContent={cartItems.length}  showZero color="primary">
+                            <Link to='/cart'><ShoppingBagIcon style={{ fontSize: "28px", color: "#20486e" }} /></Link>
                         </Badge>
                     </Stack>
                 </div>
