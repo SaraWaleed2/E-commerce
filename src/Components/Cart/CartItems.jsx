@@ -91,19 +91,18 @@ function CartItems() {
                             </Grid>
                             <Divider />
 
-                            <Box sx={{ mt: 4, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                                <Typography variant="h6" sx={{ mb: 2 }}>
-                                    Cart Total: <span style={{ color: 'var(--secondary-color)', fontWeight: "800" }}>$ {totalPice}</span>
-                                </Typography>
-                                <Button variant='contained' style={{ background: "var(--primary-color)", padding: "10px 30px", borderRadius: "25px" }}>Order Now</Button>
-                            </Box>
-
                         </Box>
                     )
 
                 })
 
             }
+            <Box sx={{ mt: 4, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <Typography variant="h6" sx={{ mb: 2 }}>
+                    Cart Total: <span style={{ color: 'var(--secondary-color)', fontWeight: "800" }}>$ {totalPice}</span>
+                </Typography>
+                <Button variant='contained' style={{ background: "var(--primary-color)", padding: "10px 30px", borderRadius: "25px" }}>Order Now</Button>
+            </Box>
         </>
     )
 }

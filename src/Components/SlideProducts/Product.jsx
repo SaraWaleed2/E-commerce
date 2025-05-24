@@ -9,7 +9,7 @@ import { useContext } from 'react';
 import { useToast } from '../../Context/ToastContext';
 
 function Product({ product }) {
-        const { showHideToast } = useToast();
+    const { showHideToast } = useToast();
     const { cartItems, addToCart } = useContext(cartContext);
     const isInCart = cartItems.some((item) => item.id === product.id);
 

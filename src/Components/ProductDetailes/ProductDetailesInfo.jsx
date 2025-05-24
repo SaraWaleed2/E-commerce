@@ -3,10 +3,13 @@ import { cartContext } from "../../Context/cartContext";
 import { Box, Chip, Grid, Rating, Typography, Button } from "@mui/material";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import { useToast } from '../../Context/ToastContext';
 
 function ProductDetailesInfo({ productDetailes }) {
     const { cartItems, addToCart } = useContext(cartContext)
     const isInCart = cartItems.some((item) => item.id === productDetailes.id);
+    const { showHideToast } = useToast();
+
     return (
         <Grid size={{ md: 6 }}>
             <Box sx={{ display: "flex", justifyContent: "start", alignItems: productDetailes.title.length > 20 ? "start" : "center", gap: 3 }}>
@@ -43,9 +46,13 @@ function ProductDetailesInfo({ productDetailes }) {
                     transform: "scale(0.95)"
                 }
             }}>
-                <Button variant="contained" disabled={isInCart} onClick={() => addToCart(productDetailes)} startIcon={<ShoppingCartIcon />} sx={{
-                    background: "var(--primary-color)", p: "10px 30px", borderRadius: "25px", transition: ".5s all ease",
-                }}>
+                <Button variant="contained" disabled={isInCart} onClick={() => {
+                    showHideToast(`${productDetailes.title} added to cart`)
+                    addToCart(productDetailes)
+                }}
+                    startIcon={<ShoppingCartIcon />} sx={{
+                        background: "var(--primary-color)", p: "10px 30px", borderRadius: "25px", transition: ".5s all ease",
+                    }}>
                     {isInCart ? "Product In Cart" : "Add to Cart"}
                 </Button>
                 <FavoriteBorderIcon sx={{ cursor: "pointer", fontSize: 35, transition: ".5s all ease" }} />
