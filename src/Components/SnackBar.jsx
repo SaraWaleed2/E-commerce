@@ -6,13 +6,18 @@ import { useToast } from "../Context/ToastContext";
 import { Button, Stack } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 
-export default function SnackBar({ open, message }) {
+export default function SnackBar({ open, message, type }) {
 
     const { setOpen } = useToast();
     const navigate = useNavigate();
     function handleViewCart() {
-        navigate('/cart');
-        setOpen(false)
+        if (type == "favourite") {
+            navigate('/favourite');
+            setOpen(false)
+        } else {
+            navigate('/cart');
+            setOpen(false)
+        }
     }
     const action = (
         <>
@@ -49,7 +54,9 @@ export default function SnackBar({ open, message }) {
                                 ml: 2
                             }}
                         >
-                            View Cart
+                            {
+                                type === "favourite" ? "View Favourites" : "View Cart"
+                            }
                         </Button>
                     </Stack>
                 </Alert>

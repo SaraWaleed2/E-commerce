@@ -1,27 +1,8 @@
-/* 
-.MuiOutlinedInput-notchedOutline {
-    border-color: var(--primary-color) !important;
-    border-radius: 25px !important;
-    padding: 20px !important;
-}
-
-.MuiSelect-select,
-.MuiFormLabel-root {
-    color: var(--primary-color) !important;
-}
-
-.MuiFormLabel-root {
-    padding: 7px 25px !important;
-}
-
-.MuiOutlinedInput-input {
-    padding: 12px 30px !important;
-}
-
 .MuiBadge-badge {
     background-color: var(--secondary-color) !important;
-} */
+}
 
-.MuiBadge-badge {
-    background-color: var(--secondary-color) !important;
+.MuiPopover-paper {
+    top: 140.5px !important;
+    height: 500px;
 }

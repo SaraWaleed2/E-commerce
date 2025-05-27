@@ -15,14 +15,34 @@ import './ProductsSlider.css';
 // import required modules
 import { Autoplay, Navigation } from 'swiper/modules';
 
-function ProductsSlider({ products }) {
+function ProductsSlider({ products, title, content }) {
     return (
         <>
             <Container>
-                <Headline />
+                <Headline title={title} content={content} />
                 <Swiper
-                    slidesPerView={5}
-                    spaceBetween={20}
+                    breakpoints={{
+                        // when window width is >= 0px (xs)
+                        0: {
+                            slidesPerView: 2,
+                            spaceBetween: 10
+                        },
+                        // when window width is >= 600px (sm)
+                        600: {
+                            slidesPerView: 3,
+                            spaceBetween: 15
+                        },
+                        // when window width is >= 900px (md)
+                        900: {
+                            slidesPerView: 4,
+                            spaceBetween: 20
+                        },
+                        // when window width is >= 1200px (lg)
+                        1200: {
+                            slidesPerView: 5,
+                            spaceBetween: 20
+                        }
+                    }}
                     navigation={true}
                     autoplay={{
                         delay: 2500,

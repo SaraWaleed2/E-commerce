@@ -5,6 +5,10 @@ import TopHeader from './Components/Layout/Header/TopHeader'
 import HomePage from './Pages/HomePage'
 import ProductDetailes from './Components/ProductDetailes/ProductDetailes'
 import ShoppingCart from './Components/Cart/ShoppingCart'
+import Scroll from './Components/Scroll'
+import CategoryPage from './Components/CategoryPage'
+import SearchResults from './Pages/SearchResults'
+import FavouriteItems from './Pages/FavouriteItems'
 function App() {
 
   return (
@@ -15,10 +19,15 @@ function App() {
         <BtmHeader />
       </header>
 
+      <Scroll />
+
       <Routes>
         <Route element={<HomePage />} path='/' />
         <Route element={<ProductDetailes />} path='/products/:id' />
         <Route element={<ShoppingCart />} path='/cart' />
+        <Route element={<FavouriteItems />} path='/favourite' />
+        <Route element={<SearchResults />} path='/search' />
+        <Route path="/category/:categoryName" element={<CategoryPage />} />
       </Routes>
 
     </>

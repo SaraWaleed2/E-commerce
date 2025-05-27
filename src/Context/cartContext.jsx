@@ -37,8 +37,30 @@ export default function CartProvider({ children }) {
         setCartItems(newCartItems);
     }
 
+    //Add to Favourite
+    const [favouriteItems, setFavouriteItems] = useState(() => {
+        return localStorage.getItem('favourite') ? JSON.parse(localStorage.getItem('favourite')) : [];
+    })
+
+    useEffect(() => {
+        localStorage.setItem('favourite', JSON.stringify(favouriteItems))
+    }, [favouriteItems])
+
+
+    function addToFavourite(item) {
+        const isItemInFavourite = favouriteItems.some(favItem => favItem.id === item.id);
+        if (!isItemInFavourite) {
+            setFavouriteItems([...favouriteItems, item]);
+        }
+    }
+
+    function removeFromFavourite(id) {
+        const newFilteredItems = favouriteItems.filter((item) => item.id !== id);
+        setFavouriteItems(newFilteredItems);
+    }
+
     return (
-        <cartContext.Provider value={{ cartItems, addToCart, decrementItemQuantity, incrementItemQuantity, removeProduct }}>
+        <cartContext.Provider value={{ cartItems, addToCart, decrementItemQuantity, incrementItemQuantity, removeProduct,favouriteItems, addToFavourite ,removeFromFavourite}}>
             {children}
         </cartContext.Provider>
     );

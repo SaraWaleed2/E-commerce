@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Container } from "@mui/material";
 import ProductsSlider from "../SlideProducts/ProductsSlider";
-import { HeadlineContext } from "../../Context/HeadlineContext";
 import ProductDetailesLoading from "./ProductDetailesLoading";
 import SliderProductLoading from "../SlideProducts/SliderProductLoading";
 import ProductDetailesInfo from "./ProductDetailesInfo";
@@ -29,12 +28,15 @@ function ProductDetailes() {
 
 
     useEffect(() => {
-        axios.get(`https://dummyjson.com/products/category/${productDetailes.category}`)
-            .then((response) => {
-                setRelatedProducts(response.data.products)
-                setLoading(false)
-            })
-    }, [productDetailes?.category])
+        if (productDetailes?.category) { 
+            axios.get(`https://dummyjson.com/products/category/${productDetailes.category}`)
+                .then((response) => {
+                    setRelatedProducts(response.data.products);
+                    setLoading(false);
+                })
+                .catch((err) => console.log(err));
+        }
+    }, [productDetailes?.category]);
 
 
     if (!productDetailes) {
@@ -56,11 +58,9 @@ function ProductDetailes() {
 
             {loading ?
                 (<SliderProductLoading />) : (
-
-                    <HeadlineContext.Provider key={productDetailes.id} value={{ title: productDetailes.category.replace('-', " "), content: `Explore similar products in ${productDetailes.category} category` }}>
-                        <ProductsSlider products={relatedProducts} />
-                    </HeadlineContext.Provider>
-
+                    <div style={{ marginBottom: "25px" }}>
+                        <ProductsSlider products={relatedProducts} title={productDetailes.category.replace('-', " ") || ""} content={`Explore similar products in ${productDetailes.category} category`} />
+                    </div>
                 )
             }
 

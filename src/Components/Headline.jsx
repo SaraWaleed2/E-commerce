@@ -1,9 +1,6 @@
 import { Typography, Box } from "@mui/material";
-import { useContext } from "react";
-import { HeadlineContext } from "../Context/HeadlineContext";
 
-function Headline() {
-    const { title, content } = useContext(HeadlineContext);
+function Headline({ title, content }) {
     return (
         <Box sx={{
             position: "relative",

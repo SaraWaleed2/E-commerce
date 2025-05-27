@@ -1,4 +1,4 @@
-import { Container, Box, Typography, Button } from "@mui/material";
+import { Container, Box, Typography } from "@mui/material";
 import { cartContext } from '../../Context/cartContext';
 import { useContext } from 'react';
 import CartHeaders from "./cartHeaders";
@@ -39,7 +39,7 @@ export default function ShoppingCart() {
                         </Box>
                     )
                 }
-            </Container >
+            </Container>
         </div>
     )
 }

@@ -1,15 +1,28 @@
 import { useContext } from "react";
 import { cartContext } from "../../Context/cartContext";
-import { Box, Chip, Grid, Rating, Typography, Button } from "@mui/material";
+import { Box, Chip, Grid, Rating, Typography, Button, IconButton } from "@mui/material";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import FavoriteIcon from '@mui/icons-material/Favorite';
 import { useToast } from '../../Context/ToastContext';
 
 function ProductDetailesInfo({ productDetailes }) {
-    const { cartItems, addToCart } = useContext(cartContext)
+    const { cartItems, addToCart, favouriteItems, addToFavourite, removeFromFavourite } = useContext(cartContext)
     const isInCart = cartItems.some((item) => item.id === productDetailes.id);
+    const isInFav = favouriteItems.some((item) => item.id === productDetailes.id);
     const { showHideToast } = useToast();
 
+    function handleFavourite() {
+        if (isInFav) {
+            removeFromFavourite(productDetailes.id);
+            showHideToast(`${productDetailes.title} removed from favourites`,'favourite');
+        } else {
+            addToFavourite(productDetailes);
+            showHideToast(`${productDetailes.title} added to favourites`,'favourite');
+        }
+
+    }
+    
     return (
         <Grid size={{ md: 6 }}>
             <Box sx={{ display: "flex", justifyContent: "start", alignItems: productDetailes.title.length > 20 ? "start" : "center", gap: 3 }}>
@@ -47,7 +60,7 @@ function ProductDetailesInfo({ productDetailes }) {
                 }
             }}>
                 <Button variant="contained" disabled={isInCart} onClick={() => {
-                    showHideToast(`${productDetailes.title} added to cart`)
+                    showHideToast(`${productDetailes.title} added to cart`, 'cart');
                     addToCart(productDetailes)
                 }}
                     startIcon={<ShoppingCartIcon />} sx={{
@@ -55,7 +68,11 @@ function ProductDetailesInfo({ productDetailes }) {
                     }}>
                     {isInCart ? "Product In Cart" : "Add to Cart"}
                 </Button>
-                <FavoriteBorderIcon sx={{ cursor: "pointer", fontSize: 35, transition: ".5s all ease" }} />
+                <IconButton onClick={handleFavourite} >
+                    {
+                        isInFav ? <FavoriteIcon sx={{ cursor: "pointer", fontSize: 35, transition: ".5s all ease", color: "var(--primary-color)" }} /> : <FavoriteBorderIcon sx={{ cursor: "pointer", fontSize: 35, transition: ".5s all ease", color: "var(--primary-color)" }} />
+                    }
+                </IconButton>
             </Box>
         </Grid>
     )

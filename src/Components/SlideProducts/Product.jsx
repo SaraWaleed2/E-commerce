@@ -10,15 +10,27 @@ import { useToast } from '../../Context/ToastContext';
 
 function Product({ product }) {
     const { showHideToast } = useToast();
-    const { cartItems, addToCart } = useContext(cartContext);
+    const { cartItems, addToCart, favouriteItems, addToFavourite, removeFromFavourite } = useContext(cartContext);
     const isInCart = cartItems.some((item) => item.id === product.id);
+    const isInFav = favouriteItems.some((item) => item.id === product.id);
+
+    function handleFavourite(e) {
+        e.preventDefault();
+        if (isInFav) {
+            removeFromFavourite(product.id);
+            showHideToast(`${product.title} removed from favourites`, 'favourite');
+        } else {
+            addToFavourite(product);
+            showHideToast(`${product.title} added to favourites`, 'favourite');
+        }
+
+    }
 
     return (
         <Link to={`/products/${product.id}`} style={{ textDecoration: 'none' }}>
             <Card className={isInCart ? 'in-cart' : ''} elevation={2} sx={{
                 maxWidth: 250,
                 height: 320,
-                mb: 10,
                 p: 1,
                 position: "relative",
                 transition: "all 0.3s ease",
@@ -71,7 +83,7 @@ function Product({ product }) {
                                 disabled={isInCart}
                                 onClick={(e) => {
                                     e.preventDefault();
-                                    showHideToast(`${product.title} added to cart`);
+                                    showHideToast(`${product.title} added to cart`, 'cart');
                                     addToCart(product);
                                 }}
                                 sx={{
@@ -93,18 +105,15 @@ function Product({ product }) {
                             </IconButton>
 
                             <IconButton sx={{
-                                backgroundColor: "var(--secondary-color)",
+                                backgroundColor: isInFav ? "var(--primary-color)" : "var(--secondary-color)",
                                 color: 'white',
-                                cursor: "pointer",
                                 padding: "7px",
-                                fontSize: "35px",
-                                borderRadius: "100%",
                                 '&:hover': {
                                     transform: "scale(1.1)",
                                     transition: "all 0.2s ease",
-                                    backgroundColor: "var(--secondary-color)"
+                                    backgroundColor: isInFav ? "var(--primary-color)" : "var(--secondary-color)",
                                 }
-                            }}>
+                            }} onClick={handleFavourite}>
                                 <FavoriteBorderIcon fontSize="small" />
                             </IconButton>
 
@@ -124,7 +133,7 @@ function Product({ product }) {
                     </Box>
                 </CardContent>
             </Card>
-        </Link >
+        </Link>
     )
 }
 
