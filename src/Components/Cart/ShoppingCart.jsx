@@ -1,7 +1,7 @@
 import { Container, Box, Typography } from "@mui/material";
 import { cartContext } from '../../Context/cartContext';
 import { useContext } from 'react';
-import CartHeaders from "./cartHeaders";
+import CartHeaders from "./CartHeaders";
 import CartItems from "./CartItems";
 
 export default function ShoppingCart() {
