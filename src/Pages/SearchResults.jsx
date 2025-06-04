@@ -35,7 +35,7 @@ function SearchResults() {
                                         {
                                             searchResults.map((product, i) => {
                                                 return (
-                                                    <Grid size={{ md: 2.4 }} sx={{ mb: 2 }} key={i}>
+                                                    <Grid size={{sx:6, md: 2.4 }} sx={{ mb: 2 }} key={i}>
                                                         <Product product={product} />
                                                     </Grid>
                                                 )

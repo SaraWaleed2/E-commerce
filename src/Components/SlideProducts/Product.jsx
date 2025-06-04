@@ -29,6 +29,7 @@ function Product({ product }) {
     return (
         <Link to={`/products/${product.id}`} style={{ textDecoration: 'none' }}>
             <Card className={isInCart ? 'in-cart' : ''} elevation={2} sx={{
+                width: {xs: 218, md: '100%'},
                 maxWidth: 250,
                 height: 320,
                 p: 1,

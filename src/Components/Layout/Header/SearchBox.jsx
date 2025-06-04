@@ -49,7 +49,7 @@ function SearchBox() {
     }, [searchTerm]);
 
     return (
-        <Box sx={{ position: 'relative', width: "50%" }}>
+        <Box sx={{ position: 'relative', width: { sm: '100%', md: '50%' } }}>
             <form onSubmit={handleSearch} className="search-input" style={{
                 width: "100%",
                 display: 'flex',

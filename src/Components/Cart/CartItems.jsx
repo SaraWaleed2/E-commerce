@@ -16,7 +16,7 @@ function CartItems() {
                         <Box key={item.id}>
                             <Grid container sx={{ py: 2 }}>
 
-                                <Grid size={{ md: 3 }} sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+                                <Grid size={{md: 3 }} sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
 
                                     <Box display="flex" justifyContent="center" alignItems="center" sx={{ gap: 2, width: '100%' }}>
                                         <Box
@@ -51,7 +51,7 @@ function CartItems() {
                                     <Typography variant="body1">$ {item.price}</Typography>
                                 </Grid>
 
-                                <Grid size={{ md: 3 }} sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+                                <Grid size={{xs:4, md: 3 }} sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
                                     <Box display="flex" alignItems="center">
                                         <IconButton
                                             size="small"
@@ -77,13 +77,13 @@ function CartItems() {
                                     </Box>
                                 </Grid>
 
-                                <Grid size={{ md: 2 }} sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+                                <Grid size={{xs:4, md: 2 }} sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
                                     <Typography variant="body1">
                                         $ {item.price * item.quantity.toFixed(2)}
                                     </Typography>
                                 </Grid>
 
-                                <Grid size={{ md: 1 }} sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+                                <Grid size={{xs:4, md: 1 }} sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
                                     <IconButton onClick={() => removeProduct(item.id)}>
                                         <DeleteIcon sx={{ color: 'var(--secondary-color)' }} />
                                     </IconButton>

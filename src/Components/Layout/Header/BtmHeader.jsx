@@ -24,7 +24,6 @@ const BtmHeader = () => {
             })
     }, [])
 
-
     const handleCategoryChange = (event) => {
         const selectedCategoryName = event.target.value;
         setCategorySelection(selectedCategoryName);
@@ -33,31 +32,38 @@ const BtmHeader = () => {
         if (selectedCategory) {
             navigate(`/category/${selectedCategory.slug}`);
         }
-        setCategorySelection('')
+        setCategorySelection('');
     };
 
-    const categoriesList = categories.map((cate) => {
-        return (
-            <MenuItem key={cate.slug} value={cate.name}>
-                {cate.name}
-            </MenuItem>
-        )
-    })
+    const categoriesList = categories.map((cate) => (
+        <MenuItem key={cate.slug} value={cate.name}>
+            {cate.name}
+        </MenuItem>
+    ));
 
     return (
         <div className="btmNav" style={{ backgroundColor: 'var(--primary-color)' }}>
             <Container maxWidth="lg">
-                <Stack direction="row" justifyContent="space-between" alignItems="center">
-                    <div className="category" style={{
-                        display: "flex",
-                        justifyContent: "space-between",
-                        alignItems: "center",
-                        width: "12%",
-                        gap: "8px"
-                    }}>
+                <Stack
+                    direction='row'
+                    justifyContent="space-between"
+                    alignItems="center"
+                    spacing={{ xs: 1, md: 0 }}
+                    sx={{ py: 1 }}
+                >
+                    <div
+                        className="category"
+                        style={{
+                            display: "flex",
+                            alignItems: "center",
+                            gap: "8px",
+                            width: "100%",
+                            maxWidth: "180px",
+                        }}
+                    >
                         <MenuIcon style={{ color: "white" }} />
 
-                        <FormControl fullWidth style={{ width: "100%" }}>
+                        <FormControl fullWidth>
                             <Select
                                 value={categorySelection}
                                 onChange={handleCategoryChange}
@@ -65,64 +71,56 @@ const BtmHeader = () => {
                                 inputProps={{ 'aria-label': 'Without label' }}
                                 sx={{
                                     color: 'white',
-                                    '.MuiOutlinedInput-notchedOutline': {
-                                        border: "none",
-                                    },
-                                    '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-                                        border: "none"
-                                    },
-                                    '&:hover .MuiOutlinedInput-notchedOutline': {
-                                        border: "none"
-                                    },
-                                    '.MuiSvgIcon-root ': {
-                                        fill: 'white !important',
-                                    }
+                                    fontSize: "14px",
+                                    '.MuiOutlinedInput-notchedOutline': { border: "none" },
+                                    '&.Mui-focused .MuiOutlinedInput-notchedOutline': { border: "none" },
+                                    '&:hover .MuiOutlinedInput-notchedOutline': { border: "none" },
+                                    '.MuiSvgIcon-root': { fill: 'white !important' },
+                                    backgroundColor: 'transparent',
                                 }}
                             >
-                                <MenuItem disabled value="">
-                                    Explore
-                                </MenuItem>
+                                <MenuItem disabled value="">Explore</MenuItem>
                                 {categoriesList}
                             </Select>
                         </FormControl>
                     </div>
 
-                    <Box className="nav-list" sx={{ display: { xs: 'none', md: 'block'} }}>
+                    <Box className="nav-list" sx={{ display: { xs: 'none', md: 'block' } }}>
                         <nav>
-                            <ul style={{
-                                display: "flex",
-                                justifyContent: "space-between",
-                                alignItems: "center",
-                                gap: "1rem",
-                                color: "white",
-                                listStyle: "none",
-                                margin: 0,
-                                padding: 0
-                            }}>
-                                {categories.slice(6, 11).map((link) => {
-                                    return (
-                                        <li key={link.name}>
-                                            <Link
-                                                style={{
-                                                    color: "white",
-                                                    textDecoration: "none",
-                                                    padding: "8px 10px",
-                                                    borderRadius: "4px",
-                                                    transition: "background-color 0.2s"
-                                                }}
-                                                to={`/category/${link.slug}`}
-                                            >
-                                                {link.name}
-                                            </Link>
-                                        </li>
-                                    )
-                                })}
+                            <ul
+                                style={{
+                                    display: "flex",
+                                    justifyContent: "space-between",
+                                    alignItems: "center",
+                                    gap: "1rem",
+                                    color: "white",
+                                    listStyle: "none",
+                                    margin: 0,
+                                    padding: 0
+                                }}
+                            >
+                                {categories.slice(6, 11).map((link) => (
+                                    <li key={link.name}>
+                                        <Link
+                                            to={`/category/${link.slug}`}
+                                            style={{
+                                                color: "white",
+                                                textDecoration: "none",
+                                                padding: "8px 10px",
+                                                borderRadius: "4px",
+                                                transition: "background-color 0.2s"
+                                            }}
+                                        >
+                                            {link.name}
+                                        </Link>
+                                    </li>
+                                ))}
                             </ul>
                         </nav>
                     </Box>
 
-                    <div className="icons">
-                        <Stack spacing={2} direction="row">
+                    <Box className="icons">
+                        <Stack spacing={2} direction="row" justifyContent="center">
                             <LogoutIcon
                                 style={{
                                     fontSize: "28px",
@@ -138,11 +136,11 @@ const BtmHeader = () => {
                                 }}
                             />
                         </Stack>
-                    </div>
+                    </Box>
                 </Stack>
             </Container>
         </div>
-    )
-}
+    );
+};
 
 export default BtmHeader;
